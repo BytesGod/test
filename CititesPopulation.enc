@@ -1,0 +1,30 @@
+
+population = {
+    1:{"Surat":{2017:3000000,2018:4000000,2019:6000000}},
+    2:{"Ahmedabad":{2017:3500000,2018:5000000,2019:7000000}},
+    3:{"Goa":{2017:1000000,2018:1500000,2019:1460000}}
+}
+year = 2017
+l = len(population)
+sum = 0
+for i in range(1,l+1):
+    for j in population[i]:
+        print("City:",j)
+        for k in population[i][j]:
+            print("Year:",k)
+            growth = (population[i][j][k]/population[i][j][2017])
+            print("Population:", population[i][j][k])
+            if k!=2017:
+                print(f"Growth rate:{growth} % ({k})")
+            if k==2017:
+                print(f"Growth rate: N/A ({k})")
+            if k>2019:
+                break
+            else:
+                k+=1
+        sum += population[i][j][2019]
+    print("--------------------")
+print(f"Total Population by 3 Cities:{sum}")
+print("Percentage by Three Cities:%.2f" % ((population[1]["Surat"][2019]*100)/sum),"%")
+print("Percentage by Three Cities:%.2f" % ((population[2]["Ahmedabad"][2019]*100)/sum),"%")
+print("Percentage by Three Cities:%.2f" % ((population[3]["Goa"][2019]*100)/sum),"%")
