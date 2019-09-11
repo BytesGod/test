@@ -1,0 +1,65 @@
+<?php
+include 'db.php';
+if(isset($_GET['id'])){
+	$todo_id = $_GET['id'];
+	$sql = "SELECT * FROM todo WHERE todo_id='$todo_id'";
+	$result = mysqli_query($conn,$sql);
+	$row = mysqli_fetch_array($result);
+}
+
+
+if (isset($_POST['update'])) {
+	$todo_id = $_POST['todo_id'];
+	$mana_name = $_POST['mana_name'];
+	$work_desc = $_POST['work_desc'];
+	$work_assign = $_POST['work_assign'];
+	$date = date('Y/m/d',strtotime($_POST['todaydate']));
+
+
+$sql = "UPDATE todo SET work_assign='$work_assign',work_desc='$work_desc',todaydate='$date' where todo_id='$todo_id'";
+
+if (mysqli_query($conn,$sql)) {
+	header('Location:view.php');
+}
+else{
+	echo mysqli_error($conn);
+}
+
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+</head>
+<form action="" method="post">
+	Todo Id :<br>
+	<input type="text" name="todo_id" value="<?php echo $row['todo_id'];?>" Readonly><br>
+	Manager Name :<br>
+	<input type="text" name="mana_name" value="<?php echo $row['mana_name'];?>" ><br>
+	Work Assign:<br>
+	<select name="work_assign"> 
+	<option> Select Work</option>
+	<option value="Development"> Development </option>
+	<option value="Testing"> Testing</option>
+	<option value="Analysis"> Analysis </option>
+	<option value="Maintainance"> Maintainace </option> 
+	</select><br>
+	Date: <br>
+	<input type="date" name="todaydate" ><br>
+
+	Work Description :<br>
+	<input type="text" name="work_desc" value="<?php echo $row['work_desc'];?>"><br>
+	
+	<input type="submit" name="update">
+
+
+</form>
+
+</body>
+</html>

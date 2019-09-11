@@ -1,0 +1,63 @@
+<?php
+session_start();
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>to do</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<form action="#" method="post">
+<h2> <?php echo "Welcome ".$_SESSION["email"]?> </h2><br>
+Manager:<br>
+<select name="manager"> 
+<option> Select Manager </option>
+<option value="m1"> M1 </option>
+<option value="m2"> M2 </option>
+<option value="m3"> M3 </option>
+</select>
+
+<br>
+Work Assign:<br>
+<select name="work_assign"> 
+<option> Select Work</option>
+<option value="Development"> Development </option>
+<option value="Testing"> Testing</option>
+<option value="Analysis"> Analysis </option>
+<option value="Maintainance"> Maintainace </option>
+</select><br>
+Work Description:<br>
+<input type="text" name="work_desc"><br>
+Date:<br> 
+<input type="date" name="today_date"><br>
+<br>
+<input type="submit" name="submit">
+
+
+</form>
+</body>
+</html>
+
+<?php
+include('db.php');
+
+if (isset($_POST["submit"])) {
+$manager = $_POST["manager"];
+$work_assign = $_POST["work_assign"];
+$work_desc = $_POST["work_desc"];
+$date = date('Y/m/d',strtotime($_POST['today_date']));
+echo $date;
+$sql = "INSERT INTO todo (mana_name,work_assign,work_desc,todaydate)values('$manager','$work_assign','$work_desc','$date')";
+
+if (mysqli_query($conn,$sql)) {
+	echo "Inserted Successfully";
+}
+else{
+	echo mysqli_error($conn);
+}
+}
+
+?>

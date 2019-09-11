@@ -1,0 +1,26 @@
+<?php
+include 'db.php';
+if (isset($_GET["id"])) {
+	$id = $_GET["id"];
+	echo "$id";
+
+$del = "DELETE FROM todo where todo_id='$id'";
+
+	if (mysqli_query($conn,$del)) {
+		header('Location:view.php');
+	}else {
+	echo "error".mysqli_error($conn);
+	}
+}
+?>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Are you sure You want To Delete This Todo Id <?php echo "$id"?></h1>
+<button name="delete">   </button>
+</body>
+</html> -->

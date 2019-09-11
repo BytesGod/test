@@ -1,0 +1,54 @@
+<?php
+session_start();
+include('db.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+$email = $_POST["email"];
+$passwd = $_POST["passwd"];
+
+
+
+
+$sql ="SELECT * FROM empprofile where empemail='$email' and emppasswd='$passwd'";
+$result = mysqli_query($conn,$sql);
+$count = mysqli_num_rows($result);
+
+
+if ($count==1) {
+	
+	$_SESSION['email'] = $email;
+	$_SESSION['passwd'] = $passwd;
+	header('location: welcome.php');
+}else{
+	$err = "Invalid Username And Password !";
+	echo $err;
+}
+
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Employee Login</title>
+
+</head>
+<body>
+	<form action="#" method="post">
+		<h3> Login Here : </h3>
+		<label for="email"> Email : </label> <br>
+		<input type="text" name="email" placeholder="Enter Email Here"> <br>
+		<label for="password"> Password : </label> <br>
+		<input type="password" name="passwd" placeholder="Enter Password Here">
+		<input type="submit" name="check"> <br>
+
+
+
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?php
+include('db.php');
+session_start();
+
+
+if (isset($_SESSION["email"])) {
+	echo "<h2>Welcome " .$_SESSION["email"]."</h2>";
+	$email = $_SESSION['email'];
+	echo "<h3><a href='todo.php'> Insert Todo  </a>";
+	echo "<br><a href='view.php'> View Todo </a>";
+}else {
+	echo "Please Login First And Start The Session ... <br>";
+	echo "<a href='login.php'> Log in </a>" ;
+}
+
+?>
+

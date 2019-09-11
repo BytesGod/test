@@ -1,0 +1,100 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 03, 2019 at 08:52 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `empinfo`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `empprofile`
+--
+
+CREATE TABLE `empprofile` (
+  `empname` varchar(50) NOT NULL,
+  `empemail` varchar(50) NOT NULL,
+  `empcontact` varchar(50) NOT NULL,
+  `empdesignation` varchar(50) NOT NULL,
+  `empdepartment` varchar(50) NOT NULL,
+  `gender` varchar(50) NOT NULL,
+  `emppasswd` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `empprofile`
+--
+
+INSERT INTO `empprofile` (`empname`, `empemail`, `empcontact`, `empdesignation`, `empdepartment`, `gender`, `emppasswd`) VALUES
+('Jemish', 'Jemish@gmail.com', '8561765185', 'Manager', 'testing', 'Male', 'qwer1234');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `todo`
+--
+
+CREATE TABLE `todo` (
+  `todo_id` int(10) NOT NULL,
+  `mana_name` varchar(25) NOT NULL,
+  `work_assign` varchar(25) NOT NULL,
+  `work_desc` text NOT NULL,
+  `todaydate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `todo`
+--
+
+INSERT INTO `todo` (`todo_id`, `mana_name`, `work_assign`, `work_desc`, `todaydate`) VALUES
+(1, 'm1', 'Select Work', 'cgmgnfc', '1970-01-01'),
+(2, 'm2', 'Development', 'cxgfgszofngf', '1970-01-01'),
+(3, 'm3', 'Analysis', 'fggfuhfdnffdij', '2019-09-05');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `empprofile`
+--
+ALTER TABLE `empprofile`
+  ADD PRIMARY KEY (`empemail`);
+
+--
+-- Indexes for table `todo`
+--
+ALTER TABLE `todo`
+  ADD PRIMARY KEY (`todo_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `todo`
+--
+ALTER TABLE `todo`
+  MODIFY `todo_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+<?php
+session_start();
+include 'db.php';
+$email = $_SESSION["email"];
+echo "<h2>Welcome ".$email."</h2>";
+
+$sql = $conn->query("SELECT * FROM todo");
+if($sql){
+	echo "<table border='1'>";
+		echo "<th> Todo ID</th>";
+		echo "<th> Manager Name </th>";
+		echo "<th> Work Assign </th> ";
+		echo "<th> Work Description </th> ";
+		echo "<th> Date </th>"; 
+		echo "<th> Update </th>";
+		echo "<th> Delete </th>";
+		
+	while($obj = $sql->fetch_object())
+	{	
+		 
+		echo "<tr>";
+
+		echo "<td>".$obj->todo_id."</td>"; 
+		echo "<td>".$obj->mana_name."</td>";
+		echo "<td>".$obj->work_assign."</td>";
+		echo "<td>".$obj->work_desc."</td>";
+		echo "<td>".$obj->todaydate."</td>";
+		echo "<td><a href='update.php?id=$obj->todo_id'> Update </a>";
+		echo "<td><a href='delete.php?id=$obj->todo_id'> delete </a>";
+		
+		echo "</tr>";
+	}
+}
+?>
+
